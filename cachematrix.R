@@ -1,8 +1,8 @@
-## Put comments here that give an overall description of what your
-## functions do
+## cacheMatrix is a wrapper around a matrix object that allows for the 
+## computation and storage of the inverse of the matrix, to avoid
+## repeating expensive matrix inverse calculations
 
-## makeCacheMatrix is a wrapper around the matrix mat, that allows for
-## storage and access of the inverse of mat.
+## makeCacheMatrix allocates storage for the inverse of the matrix mat.
 ## Contains get/set methods for both the original matrix and its inverse.
 
 makeCacheMatrix <- function(mat = matrix()) {
@@ -32,21 +32,24 @@ makeCacheMatrix <- function(mat = matrix()) {
 }
 
 
-## cacheSolve computes and stores the inverse of the matrix mat 
+## cacheSolve checks if the inverse of the cachedMatrix has been computed, and
+## computes and stores it if it has not.
 
 cacheSolve <- function(cacheMatrix, ...) {
         
+        ## Get the currently stored inverse, and return it if it's not NULL
         matInverse <- cacheMatrix$getInverse()
         if (!is.null(matInverse)){
                 message("Inverse is already computed.  Returning cached copy.")
                 return(matInverse)
         }
-        mat <- cacheMatrix$getMatrix()
-        matInverse <- solve(mat)
+        
+        ## Otherwise, use the solve command to invert the original matrix, and
+        ## Store the result in the matInverse field of the cacheMatrix
+        matOriginal <- cacheMatrix$getMatrix()
+        matInverse <- solve(matOriginal)
         cacheMatrix$setInverse(matInverse)
         
-        matInverse
-        
-        ## Return a matrix that is the inverse of 'mat'
-        
+        ## Return the inverse matrix
+        return(matInverse)
 }
