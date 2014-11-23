@@ -1,6 +1,6 @@
 ## cacheMatrix is a wrapper around a matrix object that allows for the 
 ## computation and storage of the inverse of the matrix, to avoid
-## repeating expensive matrix inverse calculations
+## repeating expensive matrix inverse calculations.
 
 ## makeCacheMatrix allocates storage for the inverse of the matrix mat.
 ## Contains get/set methods for both the original matrix and its inverse.
