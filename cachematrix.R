@@ -18,6 +18,10 @@ makeCacheMatrix <- function(mat = matrix()) {
                 mat
         }
         
+        
+        ## Warning.  It is possible to set the inverse to whatever you want.  This function
+        ## makes no attempt to ensure that the matrix that lives in matInverse is indeed the
+        ## inverse of mat.  cacheSolve only checks that matInverse is not NULL.
         setInverse <- function(mInverse) {
                 matInverse <<- mInverse
         }
